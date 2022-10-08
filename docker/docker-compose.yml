@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14.5
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes: 
+      - postgresdb-data:/var/lib/postgresql/data
+    networks:
+      - postgresdb-network
+volumes:
+  postgresdb-data:
+    name: postgres-data
+networks:
+  postgresdb-network:
+    name: postgres-network
+    driver: bridge
